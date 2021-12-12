@@ -1,0 +1,27 @@
+
+
+Point1 5 7
+Point2 -2 6
+Point3 3 -1
+
+Point4 5 1
+
+
+
+
+Point5 1 10
+Point6 -7 3
+Point7 2 -3
+Point8 9 9
+
+
+Point9 2 7 
+Point10 -6 6
+
+
+Point11 -1 7
+
+
+Point12 5 1
+Point13 10 -9
+Point14 6 -2
