@@ -19,11 +19,16 @@ class Figure:
         self.line_style = line_style
 
 
-    def draw_figure(self):
-        pyplot.plot(self.list_x, self.list_y, self.color, linestyle=self.line_style, marker="h", markerfacecolor="black")
+    def draw_figure(self, color="black"):
+        self.color = color
+        pyplot.plot(self.list_x, self.list_y, color=self.color, linestyle=self.line_style, marker="h", markerfacecolor="black")
+        # on referme la figure
+        end_list_x = [self.list_x[-1], self.list_x[0]]
+        end_list_y = [self.list_y[-1], self.list_y[0]]
+        pyplot.plot(end_list_x, end_list_y, color=self.color, linestyle=self.line_style, marker="h", markerfacecolor="black")
         for i in range(len(self.list_x)):
             pyplot.text(self.list_x[i], self.list_y[i], self.point_names[i] + " (" + str(self.list_x[i])+", "
-                        + str(self.list_y[i]) + ")", backgroundcolor="khaki", zorder=5, fontsize=10)
+                        + str(self.list_y[i]) + ")", backgroundcolor="None", zorder=5, fontsize=5.5)
 
 
 

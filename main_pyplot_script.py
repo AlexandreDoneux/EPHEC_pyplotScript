@@ -5,6 +5,7 @@
 from matplotlib import pyplot
 from pack_points.point import Point
 from pack_points.figure import Figure
+from random import randint
 
 file_name = "/Users/Alexandre/Desktop/Etudes/fichiers EPHEC/Année 2/Dév. informatique 2/Github-pyplotScript/Fichiers analysés/script_test.txt"
 # Lignes sous la forme: "nomPoint x y"
@@ -116,15 +117,18 @@ if __name__ == "__main__":
         #print("Erreur de syntaxe à la ligne {}".format(e.line_num))  # On indique à quelle ligne il y a  une erreur
         print("erreur de syntaxe dans une des lignes")
 
+    color_list = ["goldenrod", "blueviolet", "crimson", "navy", "seagreen", "steelblue", "maroon", "coral", "olivedrab"]
 
     for group in main_list:
+        draw_color = color_list[randint(0, len(color_list)-1)]
+        print(draw_color)
         if len(group) == 1:
-            group[0].draw_point()  # Quand un seul point on le dessine avec Point.draw_point()
+            group[0].draw_point(markerfacecolor=draw_color)  # Quand un seul point on le dessine avec Point.draw_point()
             continue
         my_figure = Figure(group)
-        my_figure.draw_figure()
+        my_figure.draw_figure(color=draw_color)
 
-    pyplot.xlim(minx, maxx)
-    pyplot.ylim(miny, maxy)
+    pyplot.xlim(minx-2, maxx+2)
+    pyplot.ylim(miny-2, maxy+2)
     pyplot.show()
 
