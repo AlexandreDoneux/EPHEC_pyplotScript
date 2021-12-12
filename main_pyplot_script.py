@@ -9,9 +9,9 @@ from random import randint
 import argparse
 
 
-my_parser = argparse.ArgumentParser(description= "Commande permettant de lire dans un fichier txt d'un certain format. "
-                                                 "On affiche avec matplotlib les points et les figurees qu'ils créent "
-                                                 "quand ils sont regroupés")
+my_parser = argparse.ArgumentParser(description="Commande permettant de lire dans un fichier txt d'un certain format. "
+                                                "On affiche avec matplotlib les points et les figurees qu'ils créent "
+                                                "quand ils sont regroupés")
 my_parser.add_argument('-file', type=str, help="Fichier dans lequel on va aller chercher les groupes de points pour "
                                                "créer les figures.")
 my_parser.add_argument('-savefile', type=str, help="Fichier dans lequel on va sauver le png du résultat.")
@@ -27,6 +27,7 @@ except:
 
 # Lignes sous la forme: "nomPoint x y"
 
+
 class LineSyntaxError(Exception):
     """
     Erreur pour indiquer un problème de format sur une certaine ligne.
@@ -34,16 +35,17 @@ class LineSyntaxError(Exception):
     def __int__(self, line_num="None"):
         self.line_num = line_num
 
+
 if __name__ == "__main__":
 
     try:
         with open(file_name) as file:
             lines = file.readlines()
-            lines.append("\n") # pour être sur que e fichier fini par une ligne au vide. Au pire elle sera supprimée
+            lines.append("\n")  # pour être sur que e fichier fini par une ligne au vide. Au pire elle sera supprimée
 
             new_lines = []  # liste des lignes sans les doublons
             first_line = True
-            main_list = [] # liste qui contiendra les groupes
+            main_list = []  # liste qui contiendra les groupes
             i = 0
             maxx = 0
             minx = 0
@@ -65,9 +67,9 @@ if __name__ == "__main__":
                     new_lines.append(line)
                     continue  # on ne peut pas verifier un doublon à la première ligne
 
-                # On supprime les lignes en doublon l'une à la suite des autres. Notamment les doubles lignes vides
+                # On saute l'écriture dans la nouvelle liste les lignes en doublon l'une à la suite des autres.
+                # Notamment les doubles lignes vides
                 if line == previous_line:
-                    #del line  # fonctionne ?
                     continue
 
                 new_lines.append(line)
@@ -82,9 +84,7 @@ if __name__ == "__main__":
             for j in range(number_of_groups):
                 main_list.append([])
 
-
             for line in new_lines:
-
                 if line == "":
                     i += 1  # on commence une nouvelle sous-liste
                     continue
@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
                 # Vérification de si la liste a la bonne taille.
                 if len(line) != 3:
-                    print("erreur taille")
+                    print("Erreur taille")
                     raise LineSyntaxError
 
                 """ # marche pas pour l'instant
@@ -104,7 +104,7 @@ if __name__ == "__main__":
                     print(float(line[2]))
                     float(lines[2])
                 except ValueError:
-                    print("erreur type")
+                    print("Erreur type")
                     raise LineSyntaxError
                 """
 
@@ -123,16 +123,14 @@ if __name__ == "__main__":
                 # Création du point dans la sous-liste
                 main_list[i].append(Point(line[0], line[1], line[2]))
 
-
-
-
     except FileNotFoundError:
         print("Erreur. Le fichier n'existe pas.")
     except IOError:
         print("Erreur IO.")
     except LineSyntaxError as e:
-        #print("Erreur de syntaxe à la ligne {}".format(e.line_num))  # On indique à quelle ligne il y a  une erreur
-        print("erreur de syntaxe dans une des lignes")
+        print("Erreur de syntaxe à la ligne {}".format(" ".join(line)))  # On indique à quelle ligne il y a  une erreur
+        # print("erreur de syntaxe dans une des lignes")
+        exit()
 
     color_list = ["goldenrod", "blueviolet", "crimson", "navy", "seagreen", "steelblue", "maroon", "coral",
                   "olivedrab", "lime", "darkorange", "aqua", "dimgray", "cornflowerblue"]
@@ -149,6 +147,4 @@ if __name__ == "__main__":
     pyplot.ylim(miny-2, maxy+2)
     pyplot.savefig(save_file)
     pyplot.show()
-
-
 
