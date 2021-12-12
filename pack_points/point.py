@@ -20,4 +20,5 @@ class Point:
 
         """
         pyplot.plot(self.x, self.y,  marker="h", markerfacecolor=self.color)
-        pyplot.text(self.x + 0.1, self.y + 0.1, self.name,  backgroundcolor="None", zorder=5, fontsize=5.5)
+        pyplot.text(self.x + 0.2, self.y + 0.2, self.name+ " (" + str(self.x)+", "
+                        + str(self.y) + ")",  backgroundcolor="None", zorder=5, fontsize=5.5)

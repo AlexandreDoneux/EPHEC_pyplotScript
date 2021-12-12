@@ -6,8 +6,25 @@ from matplotlib import pyplot
 from pack_points.point import Point
 from pack_points.figure import Figure
 from random import randint
+import argparse
 
-file_name = "/Users/Alexandre/Desktop/Etudes/fichiers EPHEC/Année 2/Dév. informatique 2/Github-pyplotScript/Fichiers analysés/script_test.txt"
+
+my_parser = argparse.ArgumentParser(description= "Commande permettant de lire dans un fichier txt d'un certain format. "
+                                                 "On affiche avec matplotlib les points et les figurees qu'ils créent "
+                                                 "quand ils sont regroupés")
+my_parser.add_argument('-file', type=str, help="Fichier dans lequel on va aller chercher les groupes de points pour "
+                                               "créer les figures.")
+my_parser.add_argument('-savefile', type=str, help="Fichier dans lequel on va sauver le png du résultat.")
+args = my_parser.parse_args()
+
+file_name = args.file.strip()
+try:
+    save_file = args.savefile.strip()
+except:
+    # si rien n'est mis en paramètre pour le fichier où sauver le résultat: on mets au même endroit que le
+    # fichier de base
+    save_file = file_name[:-3] + "png"
+
 # Lignes sous la forme: "nomPoint x y"
 
 class LineSyntaxError(Exception):
@@ -117,11 +134,11 @@ if __name__ == "__main__":
         #print("Erreur de syntaxe à la ligne {}".format(e.line_num))  # On indique à quelle ligne il y a  une erreur
         print("erreur de syntaxe dans une des lignes")
 
-    color_list = ["goldenrod", "blueviolet", "crimson", "navy", "seagreen", "steelblue", "maroon", "coral", "olivedrab"]
+    color_list = ["goldenrod", "blueviolet", "crimson", "navy", "seagreen", "steelblue", "maroon", "coral",
+                  "olivedrab", "lime", "darkorange", "aqua", "dimgray", "cornflowerblue"]
 
     for group in main_list:
         draw_color = color_list[randint(0, len(color_list)-1)]
-        print(draw_color)
         if len(group) == 1:
             group[0].draw_point(markerfacecolor=draw_color)  # Quand un seul point on le dessine avec Point.draw_point()
             continue
@@ -130,5 +147,8 @@ if __name__ == "__main__":
 
     pyplot.xlim(minx-2, maxx+2)
     pyplot.ylim(miny-2, maxy+2)
+    pyplot.savefig(save_file)
     pyplot.show()
+
+
 

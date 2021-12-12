@@ -27,7 +27,7 @@ class Figure:
         end_list_y = [self.list_y[-1], self.list_y[0]]
         pyplot.plot(end_list_x, end_list_y, color=self.color, linestyle=self.line_style, marker="h", markerfacecolor="black")
         for i in range(len(self.list_x)):
-            pyplot.text(self.list_x[i], self.list_y[i], self.point_names[i] + " (" + str(self.list_x[i])+", "
+            pyplot.text(self.list_x[i]+0.2, self.list_y[i]+0.2, self.point_names[i] + " (" + str(self.list_x[i])+", "
                         + str(self.list_y[i]) + ")", backgroundcolor="None", zorder=5, fontsize=5.5)
 
 
