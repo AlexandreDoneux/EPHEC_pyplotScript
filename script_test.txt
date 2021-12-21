@@ -10,7 +10,7 @@ Point4 5 1
 
 
 Point5 1 10
-Point6 -7 3
+Point6 -7 4
 Point7 2 -3
 Point8 9 9
 
