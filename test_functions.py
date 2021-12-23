@@ -76,6 +76,12 @@ def group_figures(all_lines):
 
     new_lines = clean_lines(all_lines)
 
+    try:
+        if new_lines[-1] != "":
+            new_lines.append("")  # mise d'une ligne vide à la fin pour bien avoir le bon nombre de listes dans main_list
+    except:
+        return([], [0, 0, 0, 0])
+
     # on retire la première ligne si c'est une ligne vide
     if new_lines[0] == "":
         new_lines = new_lines[1:]
@@ -121,7 +127,13 @@ def group_figures(all_lines):
             miny = line[2]
 
         # Création du point dans la sous-liste
-        main_list[i].append(Point(line[0], line[1], line[2]))
+        #print(line)
+        #print(main_list)
+        main_list[i].append(str(Point(line[0], line[1], line[2])))
+        #print(main_list)
+        #print("passé")
+        #print(Point(line[0], line[1], line[2]))
+
 
     extremes = [minx, maxx, miny, maxy]
 
@@ -129,4 +141,6 @@ def group_figures(all_lines):
 
 
 if __name__ == "__main__":
-    pass
+    initial_lines = ["P1 3 4\n", "\n", "\n", "\n", "\n", "P2 3 8\n", "\n", "\n", "P3 8 5\n", "P3 8 5\n"]
+    a = group_figures(initial_lines)
+    print(a)

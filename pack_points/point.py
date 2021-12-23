@@ -12,6 +12,11 @@ class Point:
         self.name = name
         self.color = color
 
+    def __str__(self):
+        text_list = [self.name, str(self.x), str(self.y)]
+        text = " ".join(text_list)
+        return text
+
     def draw_point(self, markerfacecolor):
         """
         Crée un plot du point
