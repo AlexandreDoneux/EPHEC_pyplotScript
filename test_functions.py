@@ -1,3 +1,10 @@
+from matplotlib import pyplot
+from pack_points.point import Point
+from pack_points.figure import Figure
+from random import randint
+import argparse
+
+
 class LineSyntaxError(Exception):
     """
     Erreur pour indiquer un problème de format sur une certaine ligne.
@@ -119,3 +126,7 @@ def group_figures(all_lines):
     extremes = [minx, maxx, miny, maxy]
 
     return main_list, extremes
+
+
+if __name__ == "__main__":
+    pass
