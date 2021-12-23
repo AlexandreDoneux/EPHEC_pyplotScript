@@ -1,13 +1,15 @@
 import unittest
 
-from main_pyplot_script import clean_lines, group_figures, LineSyntaxError
+#from main_pyplot_script import clean_lines, group_figures, LineSyntaxError
+from test_functions import clean_lines, group_figures, LineSyntaxError
+# Besoin de créer un fichier avec les fonctions séparées de argparse car problème  -> chercher pourquoi
 
 
 class TestCleanLines(unittest.TestCase):
     def test_clean_lines_1(self):
         initial_lines = ["\n", "\n", "P1 2 7\n", "P2 21 2\n", "P3 2 4\n", "\n", "\n", "\n", "P4 3 3\n", "P5 9 5\n",
                          "\n", "\n", "P6 22 1\n", "\n"]
-        excepected = ["", "P1 2 7", "P2 21 2", "P3 2 4","" "P4 3 3", "P5 9 5", "P6 22 1", ""]
+        excepected = ["", "P1 2 7", "P2 21 2", "P3 2 4", "", "P4 3 3", "P5 9 5", "", "P6 22 1", ""]
         self.assertEqual(excepected, clean_lines(initial_lines))
 
     def test_clean_lines_2(self):
@@ -36,6 +38,7 @@ class TestCleanLines(unittest.TestCase):
         self.assertEqual(excepected, clean_lines(initial_lines))
 
     # Pas vraiment d'autres cas. Vu qu'on lis d'un fichier on aura tout le temps des tring dans la liste de départ
+
 
 class TestGroupFigures(unittest.TestCase):
     def test_group_figures_1(self):
